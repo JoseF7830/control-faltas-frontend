@@ -37,6 +37,7 @@ import Suspensiones from './components/Suspensiones.vue';
 const router = createRouter({
     history: createWebHistory(),
     routes: [
+        { path: '/', component: Alumnos },
         { path: '/login', component: Login },
         { path: '/alumnos', component: Alumnos },
         { path: '/grados', component: Grados },

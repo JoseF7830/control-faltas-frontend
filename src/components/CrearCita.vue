@@ -46,9 +46,11 @@ import { store } from '../store';
 import { format } from 'date-fns';
 import html2pdf from 'html2pdf.js';
 import { API_URL } from '../constants';
+import {useToast} from 'vue-toast-notification'
 
 const route = useRoute();
 const router = useRouter();
+const toast = useToast()
 
 const alumno = ref({});
 const grado = ref({});
@@ -93,6 +95,7 @@ function crearCita() {
 
     axios.post(`${API_URL}/api/citas`, body).then((response) => {
         router.push('/citas');
+        toast.success('Cita creada con exito!')
     });
     // console.log(body);
 }

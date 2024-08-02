@@ -2,11 +2,12 @@
     import { ref, onMounted } from 'vue'
     import axios from 'axios'
     import { useRoute, useRouter } from 'vue-router'
-
     import { API_URL } from '../constants';
+    import {useToast} from 'vue-toast-notification'
 
     const route = useRoute();
     const router = useRouter();
+    const toast = useToast()
 
     const formulario = ref({
         carrera: '',
@@ -28,6 +29,7 @@
         axios.put(`${API_URL}/api/grados`, formulario.value).then((response) => {
             console.log('Exito');
             router.push('/grados');
+            toast.success('Grado modificado con exito!')
         })
     }
 </script>

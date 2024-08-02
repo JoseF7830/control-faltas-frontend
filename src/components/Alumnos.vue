@@ -4,9 +4,10 @@ import axios from 'axios'
 import {useConfirm} from 'primevue/useconfirm'
 import { store } from '../store'
 import { API_URL } from '../constants'
-
+import {useToast} from 'vue-toast-notification'
 
 const confirm = useConfirm()
+const toast = useToast()
 
 onMounted(() => {
   console.log('App lista para usarse')
@@ -34,6 +35,7 @@ function eliminarAlumno(carnet) {
                 axios.get (`${API_URL}/api/alumno`).then((response) =>{
                     store.setAlumnos(response.data.body)
                 });
+                toast.success('Alumno eliminado con exito!')
             });
         },
         reject: () => {

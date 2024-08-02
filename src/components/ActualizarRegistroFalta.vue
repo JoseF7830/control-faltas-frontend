@@ -5,9 +5,11 @@
     import { format } from 'date-fns'
     import { store } from '../store'
     import { API_URL } from '../constants'
+    import {useToast} from 'vue-toast-notification'
 
     const route = useRoute();
     const router = useRouter ();
+    const toast = useToast();
 
     const formulario = ref({
         comentario: '',
@@ -36,6 +38,7 @@
         axios.put(`${API_URL}/api/registroFaltas`, data).then((response) => {
             console.log('Exito');
             router.push('/registro-faltas');
+            toast.success('Registro modificado con exito!')
         })
     }
 

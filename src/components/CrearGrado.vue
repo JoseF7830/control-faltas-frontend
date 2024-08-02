@@ -2,9 +2,11 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
- import { API_URL } from '../constants'
+import { API_URL } from '../constants'
+import {useToast} from 'vue-toast-notification'
  
 const router = useRouter()
+const toast = useToast()
 
 const formulario = ref({
     carrera: '',
@@ -19,6 +21,7 @@ function crearGrado() {
     axios.post(`${API_URL}/api/grados`, formulario.value).then((response) => {
         console.log('Exito');
         router.push('/grados');
+        toast.success('Grado creado con exito!')
     });
 }
 

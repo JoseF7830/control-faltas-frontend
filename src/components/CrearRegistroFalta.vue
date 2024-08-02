@@ -5,8 +5,10 @@
     import { format } from 'date-fns'
     import { API_URL } from '../constants'
     import { store } from '../store'
+    import {useToast} from 'vue-toast-notification'
 
     const router = useRouter()
+    const toast = useToast()
 
     const formulario = ref({
         comentario: '',
@@ -33,6 +35,7 @@
             } else {
                 router.push('/registro-faltas');
             }
+            toast.success('Registro creado con exito!')
         });
     }
 

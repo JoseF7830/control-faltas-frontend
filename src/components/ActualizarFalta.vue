@@ -2,11 +2,12 @@
     import { ref, onMounted } from 'vue'
     import axios from 'axios'
     import { useRoute, useRouter } from 'vue-router'
-
     import { API_URL } from '../constants';
+    import {useToast} from 'vue-toast-notification'
 
     const route = useRoute();
     const router = useRouter();
+    const toast = useToast()
 
     const formulario = ref({
         falta: ''
@@ -24,6 +25,7 @@
         axios.put(`${API_URL}/api/faltas`, formulario.value).then((response) => {
             console.log('Exito');
             router.push('/faltas');
+            toast.success('Falta modificada con exito!')
         })
     }
 </script>

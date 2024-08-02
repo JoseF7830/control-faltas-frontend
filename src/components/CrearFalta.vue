@@ -3,8 +3,10 @@ import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 import { API_URL } from '../constants'
+import {useToast} from 'vue-toast-notification'
 
 const router = useRouter()
+const toast = useToast()
 
 const formulario = ref({
     falta: ''
@@ -15,6 +17,7 @@ function crearFalta(){
     axios.post(`${API_URL}/api/faltas`, formulario.value).then((response) => {
         console.log('Exito');
         router.push('/faltas');
+        toast.success('Falta creada con exito!')
     });
 }
 

@@ -4,9 +4,10 @@ import axios from 'axios'
 import {useConfirm} from 'primevue/useconfirm'
 import { store } from '../store'
 import { API_URL } from '../constants'
-
+import {useToast} from 'vue-toast-notification'
 
 const confirm = useConfirm()
+const toast = useToast()
 
 onMounted(() => {
   console.log('App lista para usarse')
@@ -32,8 +33,9 @@ function eliminarUsuario(id_usuario) {
         accept: () => {
             axios.delete(`${API_URL}/api/usuarios/${id_usuario}`).then(() => {
                 axios.get (`${API_URL}/api/usuarios`).then((response) =>{
-                    store.setAlumnos(response.data.body)
+                    store.setUsuarios(response.data.body)
                 });
+                toast.success('Usuario eliminado con exito!')
             });
         },
         reject: () => {

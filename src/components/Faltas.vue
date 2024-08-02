@@ -4,8 +4,10 @@ import axios from 'axios'
 import { store } from '../store'
 import { useConfirm } from 'primevue/useconfirm';
 import { API_URL } from '../constants';
+import {useToast} from 'vue-toast-notification'
 
 const confirm = useConfirm()
+const toast = useToast()
 
  onMounted(() => {
   console.log('App lista para usarse')
@@ -34,6 +36,7 @@ function eliminarFalta(idFalta) {
               axios.get(`${API_URL}/api/faltas`).then((response) => {
                 store.setFaltas(response.data.body)
               });
+              toast.success('Falta eliminada con exito!')
             });
         },
         reject: () => {

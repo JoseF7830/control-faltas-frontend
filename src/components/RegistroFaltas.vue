@@ -8,9 +8,10 @@ import { ref } from "vue";
 import Dialog from 'primevue/dialog';
 import Filtro from './Filtro.vue';
 import { API_URL } from '../constants';
+import {useToast} from 'vue-toast-notification'
 
 const visible = ref(false);
-
+const toast = useToast()
 const confirm = useConfirm()
 
 onMounted(() => {
@@ -39,6 +40,7 @@ function eliminarRegistro(idRegistro) {
         axios.get(`${API_URL}/api/registroFaltas`).then((response) => {
           store.setRegistroFaltas(response.data.body)
         });
+        toast.success('Registro eliminado con exito!')
       });
     },
     reject: () => {

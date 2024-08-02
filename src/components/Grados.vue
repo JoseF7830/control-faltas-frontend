@@ -4,8 +4,10 @@ import axios from 'axios'
 import { useConfirm } from 'primevue/useconfirm'
 import { store } from '../store'
 import { API_URL } from '../constants'
+import {useToast} from 'vue-toast-notification'
 
 const confirm = useConfirm()
+const toast = useToast()
 
 onMounted(() => {
   axios.get(`${API_URL}/api/grados`).then((response) => {
@@ -32,6 +34,7 @@ function eliminarGrado(idGrado) {
               axios.get(`${API_URL}/api/grados`).then((response) => {
                 store.setGrados(response.data.body)
               });
+              toast.success('Grado eliminado con exito!')
             });
         },
         reject: () => {

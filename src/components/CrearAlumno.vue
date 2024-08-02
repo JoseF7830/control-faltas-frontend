@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 import {useToast} from 'vue-toast-notification'
- import { API_URL } from '../constants'
+import { API_URL } from '../constants'
 import { store } from '../store'
 
 const router = useRouter()

@@ -2,9 +2,10 @@
     import { ref, onMounted } from 'vue'
     import axios from 'axios'
     import { useRoute, useRouter }  from 'vue-router'
-
     import { store } from '../store'
     import { API_URL } from '../constants'
+    import {useToast} from 'vue-toast-notification'
+    const toast = useToast()
 
     const route = useRoute();
     const router = useRouter();
@@ -26,6 +27,7 @@
         console.log(formulario.value);
         axios.put(`${API_URL}/api/alumno`, formulario.value).then((response) => {
             router.push('/alumnos');
+            toast.success('Alumno modificado con exito!')
         })
     }
 </script>
